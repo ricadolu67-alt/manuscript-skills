@@ -1,2 +1,63 @@
-# manuscript-skills
-Modular Agent Skills for scientific claim ledgers, manuscript drafting, editing, and fidelity checks.
+# Manuscript Skills
+
+从研究材料到论文草稿的三个模块化 Agent Skills：整理科学主张、撰写论文、编辑并核对科学保真。
+
+本项目面向已经有研究材料、希望让论文写作更清楚且可追溯的研究者。默认面向英文论文，使用说明为中文；适用于理论、机制、数值方法、实验及工程研究。
+
+| Skill | 用途 | 主要输入 | 主要输出 |
+|---|---|---|---|
+| `science-ledger` | 整理主张、条件与证据，建立科学账本 | 研究笔记、推导、数据、文献、现稿或审稿意见 | 对外账本、内部记录、检查表 |
+| `paper-author` | 从对外账本起草或重构论文 | `LEDGER_PUBLIC.md`、目标期刊与稿型 | 稿件、口头说明、写作笔记、编辑交接 |
+| `paper-editor` | 编辑并双向核对越界与漏写 | 稿件、同版对外账本、必要交接摘录 | 编辑稿、修改说明、核对报告 |
+
+各模块按需使用。已有有效账本可直接写稿；科学结论未变时，无需重建账本。`LEDGER_PUBLIC` 指供写作使用的对外层，不表示已经公开发布或允许上传。
+
+## 快速开始
+
+1. 获取并解压本项目。
+2. 将 `skills/` 下的三个文件夹分别复制到工具识别的技能目录，保留文件夹名称。不要把项目根目录当成一个 skill 安装。
+3. 打开新会话，确认能找到 `science-ledger`、`paper-author`、`paper-editor`。
+4. 选用 [使用示例](docs/USAGE.md) 中的提示词，提供你的研究材料和允许操作的范围。
+
+### 安装位置
+
+| 工具 | 用户级目录 | 项目级目录 |
+|---|---|---|
+| Codex | `~/.agents/skills/` | `<project>/.agents/skills/` |
+| Claude Code | `~/.claude/skills/` | `<project>/.claude/skills/` |
+
+`~` 表示用户主目录。其他支持 Agent Skills 的工具请使用其实际发现目录。同名技能不要重复安装；已有版本先另行备份。安装后若未出现，重新打开会话或重启工具。
+
+Codex 的目录与发现机制参见 [官方 Build skills 文档](https://learn.chatgpt.com/docs/build-skills)。Claude Code 的目录说明参见 [官方 Skills 文档](https://code.claude.com/docs/en/skills)。安装路径以所用工具版本为准。
+
+## 使用与示例
+
+- [使用指南](docs/USAGE.md)：模式选择、最小提示词、输入输出和常见问题。
+- [教学示例](skills/science-ledger/examples/quadratic_demo_LEDGER_PUBLIC.md)：用简单数学说明账本格式，不包含真实研究项目。
+- [可选范文](skills/paper-author/exemplars/EXEMPLARS.md)：如何用自己可合法使用的文献学习写作语域。
+- [贡献指南](CONTRIBUTING.md)：修改规则、验证方式和问题反馈。
+
+## 能力与边界
+
+科学账本保留结论强度及成立条件；作者依据账本写作；编辑核对稿件是否超出或遗漏账本。角色名称是功能分工，不指定任何真实人的作者、批准者或验收者身份。
+
+本项目是指令与模板集合，不附带模型、API、期刊模板、文献数据库或编译器。模型和工具权限由使用环境决定。需要检索、执行代码或编译时，须具备相应工具；未执行的检查应明确标注，不能宣称通过。
+
+它不保证新颖性、证明正确、物理有效性、投稿资格或录用结果。模型自检和编辑 `PASS` 不构成独立科学验收或投稿授权。涉及实际投稿和对外发布时，由使用者另行决定并授权。
+
+## 本地验证
+
+Python 3.10 或更高版本，无额外 Python 依赖：
+
+```bash
+python scripts/validate.py
+python -m unittest discover -s tests -v
+```
+
+验证覆盖结构、必需元数据、本地引用、文本编码、私有材料残留及文件校验值；不代表模型行为或科学质量已经得到验证。未在本项目中执行跨工具的真实模型端到端测试。
+
+## 版本与许可
+
+项目版本：`1.2.2-share.1`，基于 v1.2.2 的功能整理。模块保留原有功能版本号。此版本重新整理了公开文档并替换私人示例，不承接内部测试的性能结论。
+
+采用 [MIT License](LICENSE)。第三方论文全文不随包分发。
