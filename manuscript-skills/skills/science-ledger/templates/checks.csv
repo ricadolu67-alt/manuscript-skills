@@ -1,0 +1,4 @@
+claim_id,claim_text,claim_basis,criticality,required_for_main_claim,check_id,applicability_reason,check_record_id,evidence_id,evidence_location,evidence_type,check_method,checked_on,source_version,check_status,independence_level,assumptions_scope,alternative_hypothesis,allowed_wording,open_issue,next_action,independence_record_ref
+C01,,,MAJOR,UNKNOWN,,,,,,,,,,NOT_CHECKED,UNKNOWN,,,,,,
+C02,,,MAJOR,UNKNOWN,,,,,,,,,,NOT_CHECKED,UNKNOWN,,,,,,
+C03,,,MAJOR,UNKNOWN,,,,,,,,,,NOT_CHECKED,UNKNOWN,,,,,,
